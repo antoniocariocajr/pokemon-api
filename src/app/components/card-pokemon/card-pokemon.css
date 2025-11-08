@@ -1,0 +1,16 @@
+.card__container{
+    width: 16vw;
+    height: 19vh;
+    margin: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.card__container:hover{
+
+    transform: scale(1.2);
+}
+.card__container img:hover{
+    transform: scale(1.4);
+}

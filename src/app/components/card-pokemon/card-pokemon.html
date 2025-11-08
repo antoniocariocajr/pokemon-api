@@ -1,0 +1,7 @@
+<button class="card__container" (click)="openDetails()">
+    @if (pokemonObservable|async) {
+        <img class="card__image" [src]="pokemonImage" alt="{{ pokemon.name }}" />
+        <h2 class="card__name">{{ pokemon.name | titlecase }}</h2>
+    }
+    
+</button>

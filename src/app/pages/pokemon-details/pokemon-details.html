@@ -1,0 +1,60 @@
+@if (pokemonObserve|async) {
+    <div class="pokemon_tittle">
+        <p>{{pokemonData.id}}</p>
+        <strong>{{ pokemonName | uppercase }}</strong>
+        <p>{{pokemonData.past_abilities[0].generation.name | titlecase}}</p>
+    </div>
+    <section class="container">
+        
+        <div class="conteiner_images">
+            <div class="options_images">
+                @for (image of pokemonImageUrl; track $index) {
+                    <button class="pokemon_buttons" [id]="$index" (click)="chagerImage(image.url)">{{image.name}}</button>
+                }
+            </div>
+            <div class="pokemon_image" >
+                <img id="pokemon_image" [src]="pokemonImageUrl[0].url" alt="{{ pokemonName }}">
+            </div>
+        </div>
+        <div class="container_info">
+            <div class="pokemon_info">
+                <strong>Base Informations:</strong>
+                <span><strong>Base Exp.: </strong>{{pokemonData.base_experience}}</span>
+                <span><strong>Height: </strong>{{pokemonData.height}}</span>
+                <span><strong>Weight: </strong>{{pokemonData.weight}}</span>
+            </div>
+            <div class="pokemon_type">
+                <strong>Type: </strong>
+                @for (type of pokemonData.types; track $index) {
+                    <span>{{type.type.name | titlecase}}</span>
+                }
+            </div>
+            <div class="pokemon_abilities">
+                <strong>Ability: </strong>
+                @for (ability of pokemonData.abilities; track $index) {
+                    <span>{{ability.ability.name| titlecase}}</span>
+                }
+            </div>
+            <div class="pokemon_stats">
+                <strong>Stat: </strong>
+                @for (stat of pokemonData.stats; track $index) {
+                    <span><strong>{{stat.stat.name | titlecase}} :</strong> {{stat.base_stat}}</span>
+                }
+            </div>
+            <div class="pokemon_moves">
+                <strong>Move: </strong>
+                @for (move of pokemonData.moves; track $index) {
+                    <span>{{move.move.name | titlecase}}</span>
+                }
+            </div>
+        </div>
+        
+        
+    </section>    
+}
+<div class="pokemon_back">
+    <button class="button_back" (click)="back()">
+            Back
+    </button>
+</div>
+

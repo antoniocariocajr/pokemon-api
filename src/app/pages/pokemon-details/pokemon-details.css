@@ -1,0 +1,121 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.pokemon_tittle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    padding: 0.5rem;
+    width: 100%;
+    background-color: aquamarine;
+    color: darkblue;
+    border: none;
+    border-radius: 5px;
+}
+.pokemon_tittle p{
+    font-size: 1rem;
+}
+.conteiner_images{
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    margin-right: 1rem;
+    width: 50vw;
+}   
+.options_images{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0.5rem;
+}
+.pokemon_buttons{
+    padding: 10px 15px;
+    font-size: 1rem;
+    margin: 0.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: lightblue;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.pokemon_buttons:hover{
+    background-color: #0056b3;
+}
+.pokemon_image{
+    width: 50vw;
+    height: 50vh;
+}
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.container_info{
+    background-color: lightblue;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    width: 49vw;
+}
+.pokemon_info, .pokemon_type, .pokemon_abilities, .pokemon_stats{
+    display: flex;
+    flex-direction: column;
+    background-color: azure;
+    margin: 2.5%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    width: 45%;
+    height: 10rem;
+}
+.pokemon_moves{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: azure;
+    margin: 2.5%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    width: 95%;
+}
+
+
+
+.pokemon_back{
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0.5rem;
+}
+.button_back{
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: coral;
+    color: brown;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.button_back:hover{
+    background-color: chocolate;
+    color: white;
+}

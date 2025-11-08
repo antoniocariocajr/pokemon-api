@@ -1,0 +1,14 @@
+<section class="container_cards">
+    @if (pokemonspage|async; as pokemonspage) {
+        @for (pokemon of pokemons; track pokemon.name) {
+            <app-card-pokemon [pokemon]="pokemon"></app-card-pokemon>
+        }
+    }@else { 
+        <p>vazio</p>
+    }
+</section>
+<section class="container_buttons">
+    <button (click)="loadPrevious()">ANTERIOR</button>
+    <button (click)="loadMore()">PRÓXIMA</button>
+</section>
+
