@@ -23,7 +23,9 @@
             ],
             "styles": [
               "src/styles.css"
-            ]
+            ],
+            "outputPath": "dist/browser",
+            "baseHref": "/pokemon-api/"
           },
           "configurations": {
             "production": {
