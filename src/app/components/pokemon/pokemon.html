@@ -1,0 +1,47 @@
+<section class="pokemon-container">
+  <h1>Pokédex Angular (com async/await)</h1>
+  <input type="text" #pokemonNameInput placeholder="Digite o nome do Pokémon" />
+  <button (click)="buscarPokemon(pokemonNameInput.value)">Buscar Pokémon</button>
+
+  <!-- Substituição do *ngIf="loading" -->
+  @if (loading) {
+    <div>
+      <p>Carregando...</p>
+    </div>
+  }
+
+  <!-- Substituição do *ngIf="erro" -->
+  @if (erro) {
+    <div>
+      <p class="error">{{ erro }}</p>
+    </div>
+  }
+
+  <!-- Substituição do *ngIf="pokemon" -->
+  @if (pokemon!= null) {
+    <div class="pokemon-details">
+      <h2>{{ pokemon.name | titlecase }}</h2>
+      <p><strong>ID:</strong> {{ pokemon.id }}</p>
+      <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}">
+      <h3>Types</h3>
+        <ul>
+            @for (type of pokemon.types; track type) {
+                <li>{{ type.type.name | titlecase }}</li>
+            }
+        </ul>
+        <h3>Abilities</h3>
+        <ul>
+            @for (ability of pokemon.abilities; track ability) {
+                <li>{{ ability.ability.name | titlecase }}</li>
+            }
+        </ul>
+        <h3>Stats</h3>
+        <ul>
+            @for (stat of pokemon.stats; track stat) {
+                <li>{{ stat.stat.name | titlecase }}: {{ stat.base_stat }}</li>
+            }
+        </ul>
+    </div>
+    
+  }
+</section>

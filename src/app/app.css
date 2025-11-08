@@ -1,0 +1,17 @@
+header{
+    background-color: #ffcb05;
+    color: #2a75bb;
+    text-align: center;
+    padding: 1rem 0;
+}
+main {
+    padding: 20px;
+    background-color: #f7f7f7;
+    min-height: 70vh;
+}
+footer {
+    background-color: #2a75bb;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
