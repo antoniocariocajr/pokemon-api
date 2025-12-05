@@ -14,6 +14,7 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
+            "outputPath": "dist/pokemon-api",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -63,6 +64,9 @@
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         },
         "test": {
           "builder": "@angular/build:karma",
