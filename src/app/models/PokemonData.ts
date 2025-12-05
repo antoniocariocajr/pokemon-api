@@ -14,16 +14,21 @@ export type PokemonData = {
     back_female: string | null;
     front_shiny_female: string | null;
     back_shiny_female: string | null;
+    other: {
+      'official-artwork': {
+        front_default: string;
+      };
+    };
   };
   abilities: { ability: { name: string; url: string }; is_hidden: boolean; slot: number }[];
   stats: { base_stat: number; effort: number; stat: { name: string; url: string } }[];
   moves: { move: { name: string; url: string } }[];
   past_types: any[];
-  past_abilities: { 
+  past_abilities: {
     abilities: {
-        ability: { name: string; url: string }; 
-        is_hidden: boolean; 
-        slot: number; 
+      ability: { name: string; url: string };
+      is_hidden: boolean;
+      slot: number;
     }[];
     generation: { name: string; url: string }
   }[];

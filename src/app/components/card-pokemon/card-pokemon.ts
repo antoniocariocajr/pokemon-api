@@ -30,7 +30,7 @@ export class CardPokemon implements OnInit {
     this.pokemonObservable$ = this.getPokemon.getPokemonByName(this.pokemon.name);
     this.pokemonObservable$.subscribe((data: PokemonDetails) => {
       this.pokemonData = data;
-      this.pokemonImage = this.pokemonData.sprites.front_default;
+      this.pokemonImage = this.pokemonData.sprites.other?.['official-artwork'].front_default || this.pokemonData.sprites.front_default;
     });
   }
   openDetails(): void {
