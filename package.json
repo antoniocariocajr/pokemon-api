@@ -1,6 +1,15 @@
 {
   "name": "pokemon-api",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A modern Angular application for browsing and viewing Pokemon details, powered by PokeAPI.",
+  "keywords": [
+    "angular",
+    "pokemon",
+    "pokeapi",
+    "web-application",
+    "typescript"
+  ],
+  "author": "Antonio",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
