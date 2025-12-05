@@ -1,14 +1,19 @@
 <section class="container_cards">
-    @if (pokemonspage|async; as pokemonspage) {
-        @for (pokemon of pokemons; track pokemon.name) {
-            <app-card-pokemon [pokemon]="pokemon"></app-card-pokemon>
-        }
-    }@else { 
-        <p>vazio</p>
+    @if (error()) {
+    <p class="error">{{ error() }}</p>
+    }
+
+    @if (pokemonspage$ | async; as pageData) {
+    @for (pokemon of pageData?.results; track pokemon.name) {
+    <app-card-pokemon [pokemon]="pokemon"></app-card-pokemon>
+    } @empty {
+    <p>Nenhum pokemon encontrado.</p>
+    }
+    } @else {
+    <p>Carregando...</p>
     }
 </section>
 <section class="container_buttons">
-    <button (click)="loadPrevious()">ANTERIOR</button>
+    <button (click)="loadPrevious()" [disabled]="page() === 0">ANTERIOR</button>
     <button (click)="loadMore()">PRÓXIMA</button>
 </section>
-

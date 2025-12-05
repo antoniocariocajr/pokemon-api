@@ -1,59 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { CardPokemon } from "../../components/card-pokemon/card-pokemon";
 import { GetPokemon } from '../../services/get-pokemon';
-import { PokemonsPage } from '../../models/PokemonsPage';
-import { PokemonsResult } from '../../models/PokemonsResult';
-import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { switchMap, catchError, of, Observable, tap } from 'rxjs';
+import { PokemonsPage } from '../../models/PokemonsPage';
 
 @Component({
   selector: 'app-home',
-  imports: [CardPokemon,AsyncPipe],
+  imports: [CardPokemon, AsyncPipe],
   templateUrl: './home.html',
   styleUrl: './home.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Home implements OnInit {
-  pokemonspage: Observable<PokemonsPage> | null;
-  erro: string | null;
-  pokemons: PokemonsResult[];
-  limite = 20;
-  page = 0;
+export class Home {
+  page = signal(0);
+  limit = 20;
 
-  constructor(private getPokemon: GetPokemon) { 
-    this.pokemonspage = null;
-    this.erro = null;
-    this.pokemons = [];
-  }
+  error = signal<string | null>(null);
 
-  ngOnInit(): void {
-    this.loadPokemons();
-  }
+  // Convert signal to observable to trigger the http request
+  // Ideally with Angular 19+ we could use resource() but let's stick to safe signal-interop for now to ensure compatibility
+  pokemonspage$: Observable<PokemonsPage | null>;
 
- 
-  
-  loadPokemons() {
-    this.pokemonspage = this.getPokemon.getPokemons(this.page, this.limite);
-    this.pokemonspage.subscribe({
-      next: (data) => {
-        this.pokemons = data.results;
-        console.log(this.pokemons);
-      },
-      error: (err) => {
-        this.erro = 'Erro ao carregar os pokémons.';
-        console.error(err);
-      }
-    });
+  constructor(private getPokemon: GetPokemon) {
+    this.pokemonspage$ = toObservable(this.page).pipe(
+      switchMap(currentPage => this.getPokemon.getPokemons(currentPage, this.limit).pipe(
+        tap(() => this.error.set(null)),
+        catchError(err => {
+          console.error(err);
+          this.error.set('Erro ao carregar os pokémons.');
+          return of(null);
+        })
+      ))
+    );
   }
 
   loadMore() {
-    this.page++;
-    this.loadPokemons();
-  } 
-  loadPrevious() {
-    if (this.page > 0) {
-      this.page--;
-      this.loadPokemons();
-    }
+    this.page.update(p => p + 1);
   }
 
+  loadPrevious() {
+    if (this.page() > 0) {
+      this.page.update(p => p - 1);
+    }
+  }
 }
